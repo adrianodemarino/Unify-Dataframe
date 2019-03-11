@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def unify_new(list):
+def unify(list):
 
     super = {}
 
@@ -21,4 +21,4 @@ def unify_new(list):
 
 list = [ df_1,df_2 ] 
 
-new_df = unify_new(list)
+new_df = unify(list)
