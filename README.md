@@ -8,21 +8,21 @@ Let's image to have 2 dataframe DF1 and DF2. We want a third dataframe DF3 that 
 
 ## How the algorithm works:
 ```
-def unify_new(list):
+def unify(list):
 
-    super = {}
+    storeg = {}
 
     for df in list:
         value = df.values
         for n,i in enumerate(df.index):
             for k,j in enumerate(df.columns):
-                if j in super:
-                    if i in super[j]:
-                        super[j][i] += value[n,k]
+                if j in storeg:
+                    if i in storeg[j]:
+                        storeg[j][i] += value[n,k]
                     else:
-                        super[j][i] = value[n,k]
+                        storeg[j][i] = value[n,k]
                 else:
-                    super[j] = {i : value[n,k]}
+                    storeg[j] = {i : value[n,k]}
 
     return pd.DataFrame.from_dict(super)
 ```
@@ -35,4 +35,5 @@ Given a list of a dataframes to merge:
         * the tuple is stored in dictionary with the releated value in the cell of the df
     *  else if the tuple exist in the dictionary
         * the value of the tuple just inserted is update with the sum between the old end the new one.
-3.  After these operations, the dictionary will contain all the possible combinations between rows and columns of the all dataframes in the list. 
+3.  After these operations, the dictionary will contain all the possible combinations between rows and columns of the all dataframes in the list.
+4. The dictionary is used to create a new dataframe using pandas function ```from_dict()```
