@@ -3,19 +3,19 @@ import numpy as np
 
 def unify(list):
 
-    super = {}
+    storeg = {}
 
     for df in list:
         value = df.values
         for n,i in enumerate(df.index):
             for k,j in enumerate(df.columns):
-                if j in super:
-                    if i in super[j]:
-                        super[j][i] += value[n,k]
+                if j in storeg:
+                    if i in storeg[j]:
+                        storeg[j][i] += value[n,k]
                     else:
-                        super[j][i] = value[n,k]
+                        storeg[j][i] = value[n,k]
                 else:
-                    super[j] = {i : value[n,k]}
+                    storeg[j] = {i : value[n,k]}
 
     return pd.DataFrame.from_dict(super)
 
